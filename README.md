@@ -14,4 +14,5 @@ Work in Progress:
 - Community Repositories
 - And much more?
 
-#Currenly closed-source
+# Closed Source
+At the moment the core program is closed source, as I'm tidying up the code and the way I handle connection to my server is something I'd rather keep hidden atm (password visable).
