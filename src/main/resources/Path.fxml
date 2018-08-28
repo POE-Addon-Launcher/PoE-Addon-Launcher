@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="200.0" prefWidth="308.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Configurator_Controller">
+   <children>
+      <AnchorPane fx:id="step1" prefHeight="210.0" prefWidth="308.0">
+         <children>
+            <Text layoutX="20.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to PoE Addon Launcher Configurator!">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="20.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This wizard will setup the launcher for use." />
+            <Text layoutX="20.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click next to continue">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="step2" prefHeight="210.0" prefWidth="308.0" visible="false">
+         <children>
+            <Text layoutX="24.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select the folders this program can use.">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="addon_text" layoutX="24.0" layoutY="68.0" prefHeight="25.0" prefWidth="191.0" />
+            <Button fx:id="bBrowseAddon" layoutX="232.0" layoutY="68.0" mnemonicParsing="false" onAction="#browseAddonFolder" text="Browse" />
+            <TextField fx:id="text_versions" layoutX="24.0" layoutY="126.0" prefHeight="25.0" prefWidth="191.0" />
+            <Button fx:id="bBrowseVersions" layoutX="232.0" layoutY="126.0" mnemonicParsing="false" onAction="#browseVersionFolder" text="Browse" />
+            <Text layoutX="24.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Folder to download Addons to:">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="24.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Folder to download Program Versions to:">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="step3" prefHeight="210.0" prefWidth="308.0" visible="false">
+         <children>
+            <Text layoutX="14.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please browse to your PoE folder(s):">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="steam_path" layoutX="15.0" layoutY="53.0" prefHeight="25.0" prefWidth="211.0" />
+            <Button fx:id="bSteam" layoutX="238.0" layoutY="53.0" mnemonicParsing="false" onAction="#browseSteamFolder" text="Browse" />
+            <Text layoutX="15.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PoE Steam Version:">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="path_standalone" layoutX="16.0" layoutY="95.0" prefHeight="25.0" prefWidth="211.0" />
+            <Button fx:id="bStandalone" layoutX="239.0" layoutY="95.0" mnemonicParsing="false" onAction="#browseStandAloneVersion" text="Browse" />
+            <Text layoutX="16.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PoE Stand-Alone Version:">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="path_beta" layoutX="16.0" layoutY="137.0" prefHeight="25.0" prefWidth="211.0" />
+            <Button fx:id="bBeta" layoutX="239.0" layoutY="137.0" mnemonicParsing="false" onAction="#browseBetaVersion" text="Browse" />
+            <Text layoutX="16.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PoE Stand-Alone (BETA):">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="16.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You only have to fill out one to continue.">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="step4" prefHeight="210.0" prefWidth="308.0" visible="false">
+         <children>
+            <Text layoutX="14.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thank You!">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="That's everything we needed" />
+            <Text layoutX="103.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click &quot;Next&quot; to continue -&gt;" />
+            <TextArea fx:id="txtDump" layoutX="14.0" layoutY="62.0" prefHeight="107.0" prefWidth="280.0" />
+         </children></AnchorPane>
+      <Button fx:id="bNext" defaultButton="true" layoutX="253.0" layoutY="171.0" mnemonicParsing="false" onAction="#ButtonNext" text="Next" />
+   </children>
+</AnchorPane>
