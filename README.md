@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/POE-Addon-Launcher/PoE-Addon-Launcher.svg?branch=master)](https://travis-ci.org/POE-Addon-Launcher/PoE-Addon-Launcher)
+
 # PoE Addon Launcher (PAL)
 Is a java based program, used for updating and managing several addons that are commonly used in Path of Exile.
 
