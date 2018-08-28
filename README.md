@@ -13,3 +13,5 @@ Work in Progress:
 - Overlay to be used in-game that will allow you to use browser based tools such as the Vorici Calc by Siveran.
 - Community Repositories
 - And much more?
+
+#Currenly closed-source
