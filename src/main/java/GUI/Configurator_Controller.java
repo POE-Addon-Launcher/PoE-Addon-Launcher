@@ -253,7 +253,7 @@ public class Configurator_Controller
     {
         // Save Settings
         Data.getINSTANCE().setAddon_path(addon_text.getText());
-        Data.getINSTANCE().setVersion_path(text_versions.getText());
+        Data.getINSTANCE().setProgram_path(text_versions.getText());
         Data.getINSTANCE().setBeta_path(path_beta.getText());
         Data.getINSTANCE().setStand_alone(path_standalone.getText());
         Data.getINSTANCE().setSteam_path(steam_path.getText());
@@ -281,7 +281,7 @@ public class Configurator_Controller
      */
     public void browseVersionFolder()
     {
-        File f = browse("Browse for a folder to download versions to:");
+        File f = browse("Browse for a folder to install PAL to:");
         if (f==null)
             return;
         Platform.runLater(() -> text_versions.setText(f.getPath()));

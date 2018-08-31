@@ -28,7 +28,7 @@ public class Launcher
 
     private static boolean checkForIni(String[] args)
     {
-        if (Data.getINSTANCE().getAddon_path().equals("") || Data.getINSTANCE().getVersion_path().equals(""))
+        if (Data.getINSTANCE().getAddon_path().equals("") || Data.getINSTANCE().getProgram_path().equals(""))
         {
             // Run Path setter.
             Configurator configurator = new Configurator();

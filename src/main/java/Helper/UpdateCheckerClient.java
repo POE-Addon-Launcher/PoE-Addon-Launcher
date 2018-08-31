@@ -38,15 +38,15 @@ public final class UpdateCheckerClient
      */
     public void downloadUpdate(Release most_recent)
     {
-        File versions_dir = new File(Data.getINSTANCE().getVersion_path());
+        File versions_dir = new File(Data.getINSTANCE().getProgram_path());
 
         if (versions_dir.isDirectory())
         {
             File[] directories = versions_dir.listFiles();
-            File mr_dir = new File(Data.getINSTANCE().getVersion_path() + "/" + most_recent.getVersion());
+            File mr_dir = new File(Data.getINSTANCE().getProgram_path());
             for (File dir : directories)
             {
-                if (dir.getName().equals(most_recent.getVersion()))
+                if (dir.getName().equals(most_recent.getName()))
                 {
                     Data.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
                     Data.setStatus("Up to date, launching program!");
@@ -54,28 +54,20 @@ public final class UpdateCheckerClient
                 }
             }
             // Create DIR
-            if (mr_dir.mkdir())
+            try
             {
-                // Download JAR.
-                try
-                {
-                    InputStream in = URI.create(most_recent.getDownload_url()).toURL().openStream();
-                    Files.copy(in, Paths.get(mr_dir.toString() + "/" + most_recent.getName()));
-                    Data.setStatus("Downloaded: " + most_recent.getName());
-                    Data.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
-                }
-                catch (MalformedURLException e)
-                {
-                    e.printStackTrace();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
+                InputStream in = URI.create(most_recent.getDownload_url()).toURL().openStream();
+                Files.copy(in, Paths.get(mr_dir.toString() + "/" + most_recent.getName()));
+                Data.setStatus("Downloaded: " + most_recent.getName());
+                Data.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
             }
-            else
+            catch (MalformedURLException e)
             {
-                Data.setStatus("ERROR: Could not make a new Directory!");
+                e.printStackTrace();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
             }
         }
 

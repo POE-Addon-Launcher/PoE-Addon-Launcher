@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="200.0" prefWidth="308.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Configurator_Controller">
+<AnchorPane prefHeight="200.0" prefWidth="308.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Configurator_Controller">
    <children>
       <AnchorPane fx:id="step1" prefHeight="210.0" prefWidth="308.0">
          <children>
@@ -40,7 +40,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Text>
-            <Text layoutX="24.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Folder to download Program Versions to:">
+            <Text layoutX="24.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Folder to install PoE Addon Launcher to:">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>

@@ -15,7 +15,7 @@ public final class Data
     private static double progress = 0;
     private static String status = "";
     private String addon_path = "";
-    private String version_path = "";
+    private String program_path = "";
     private String steam_path = "";
     private String stand_alone = "";
     private String beta_path = "";
@@ -56,16 +56,26 @@ public final class Data
     {
         Properties poe_paths = new Properties();
         OutputStream out = null;
+        OutputStream secondary = null;
+
+        File f = new File(program_path + "/.settings");
 
         try
         {
             out = new FileOutputStream(".path");
             poe_paths.setProperty("addon_folder", addon_path);
-            poe_paths.setProperty("version_folder", version_path);
+            poe_paths.setProperty("version_folder", program_path);
             poe_paths.setProperty("steam", steam_path);
             poe_paths.setProperty("standalone", stand_alone);
             poe_paths.setProperty("beta", beta_path);
             poe_paths.store(out, "Only change this if you know what you are doing!");
+
+            if (!f.exists())
+            {
+                secondary = new FileOutputStream(f.getPath());
+                poe_paths.store(secondary, "Only change this if you know what you are doing!");
+            }
+
         }
         catch (IOException ex)
         {
@@ -82,6 +92,17 @@ public final class Data
                 catch (IOException ex)
                 {
                     ex.printStackTrace();
+                }
+            }
+            if (secondary != null)
+            {
+                try
+                {
+                    secondary.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
                 }
             }
         }
@@ -109,7 +130,7 @@ public final class Data
      */
     public boolean checkDirs()
     {
-        ArrayList<String> dirs = createListOfDirs(addon_path, version_path, steam_path, stand_alone, beta_path);
+        ArrayList<String> dirs = createListOfDirs(addon_path, program_path, steam_path, stand_alone, beta_path);
 
         // Versions & Addons are set, but no game path.
         if (dirs.size() <= 2)
@@ -144,7 +165,7 @@ public final class Data
             in = new FileInputStream(".path");
             poe_paths.load(in);
             addon_path = poe_paths.getProperty("addon_folder");
-            version_path = poe_paths.getProperty("version_folder");
+            program_path = poe_paths.getProperty("version_folder");
             steam_path = poe_paths.getProperty("steam");
             stand_alone = poe_paths.getProperty("standalone");
             beta_path = poe_paths.getProperty("beta");
@@ -190,14 +211,14 @@ public final class Data
         this.addon_path = addon_path;
     }
 
-    public String getVersion_path()
+    public String getProgram_path()
     {
-        return version_path;
+        return program_path;
     }
 
-    public void setVersion_path(String version_path)
+    public void setProgram_path(String program_path)
     {
-        this.version_path = version_path;
+        this.program_path = program_path;
     }
 
     public String getSteam_path()
