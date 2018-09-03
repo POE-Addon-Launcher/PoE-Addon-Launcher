@@ -15,6 +15,3 @@ Work in Progress:
 - Overlay to be used in-game that will allow you to use browser based tools such as the Vorici Calc by Siveran.
 - Community Repositories
 - And much more?
-
-# Closed Source
-At the moment the core program is closed source, as I'm tidying up the code and the way I handle connection to my server is something I'd rather keep hidden atm (password visable).
