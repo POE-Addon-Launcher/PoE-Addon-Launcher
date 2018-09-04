@@ -3,6 +3,7 @@ package Helper;
 import GUI.Data;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.kohsuke.github.GitHub;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -79,6 +81,12 @@ public final class UpdateCheckerClient
      */
     public ArrayList<Release> getReleases()
     {
+        if (!canCheckGithub())
+        {
+            return null;
+        }
+
+
         ArrayList<Release> releases = new ArrayList<>();
         try
         {
@@ -102,5 +110,19 @@ public final class UpdateCheckerClient
             e.printStackTrace();
         }
         return releases;
+    }
+
+    private boolean canCheckGithub()
+    {
+        try
+        {
+            GitHub github = GitHub.connectAnonymously();
+            return github.getRateLimit().remaining > 0;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

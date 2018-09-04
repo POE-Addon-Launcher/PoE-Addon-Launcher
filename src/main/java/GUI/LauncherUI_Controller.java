@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -32,9 +33,75 @@ public class LauncherUI_Controller implements Initializable
      */
     public void initialize(URL location, ResourceBundle resources)
     {
+        cleanUp();
         daemon_progress();
         daemon_checker();
         daemon_launch();
+    }
+
+    private void runMostRecentVersion()
+    {
+
+        Runtime runtime = Runtime.getRuntime();
+        try
+        {
+            runtime.exec("java -jar " + mr_jar.getPath());
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        Stage s = LauncherUI.stage;
+        Platform.runLater(() -> s.close());
+
+    }
+
+    private boolean isNewer(String _old, String _new)
+    {
+        _old = _old.replace("b", "");
+        _old = _old.replace(".jar", "");
+        _new = _new.replace("b", "");
+        _new =_new.replace(".jar", "");
+
+        int num_old = Integer.parseInt(_old);
+        int num_new = Integer.parseInt(_new);
+
+        return num_new > num_old;
+    }
+
+    private File mr_jar;
+    private void cleanUp()
+    {
+        File f = new File(Data.getINSTANCE().getProgram_path());
+        if (f.exists())
+        {
+            if (f.isDirectory())
+            {
+                File[] files = f.listFiles();
+                File most_recent_jar = new File("b0.jar");
+                for (File file : files)
+                {
+                    if (file.getName().contains(".jar"))
+                    {
+                        if (isNewer(most_recent_jar.getName(), file.getName()))
+                        {
+                            most_recent_jar = file;
+                        }
+                    }
+                }
+                mr_jar = most_recent_jar;
+                for (File file : files)
+                {
+                    if (file.getName().contains(".jar"))
+                    {
+                        if (!file.getName().equals(most_recent_jar.getName()))
+                        {
+                            file.delete();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -90,6 +157,12 @@ public class LauncherUI_Controller implements Initializable
             // Create Releases Array
             Data.setStatus("Accessing github for releases");
             ArrayList<Release> releases = UpdateCheckerClient.getINSTANCE().getReleases();
+            if (releases == null)
+            {
+                Data.setStatus("Can't connect to the GitHub API using installed version.");
+                runMostRecentVersion();
+                return;
+            }
 
             Data.setStatus("Got all " + releases.size() + " releases!");
 
