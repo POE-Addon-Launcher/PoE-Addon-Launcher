@@ -159,16 +159,32 @@ public class LauncherUI_Controller implements Initializable
             ArrayList<Release> releases = UpdateCheckerClient.getINSTANCE().getReleases();
             if (releases == null)
             {
-                Data.setStatus("Can't connect to the GitHub API using installed version.");
-                runMostRecentVersion();
-                return;
+                File f = new File(Data.getINSTANCE().getProgram_path() + File.separator + "b9.jar");
+                if (f.exists())
+                {
+                    Data.setStatus("Can't connect to the GitHub API using installed version.");
+                    runMostRecentVersion();
+                    return;
+                }
+                else
+                {
+                    // If a user is out of github api requests hardcoded-download b9
+                    Release release = new Release();
+                    release.setNum(9);
+                    release.setName("b9.jar");
+                    release.setDownload_url("https://github.com/POE-Addon-Launcher/Core/releases/download/b9/b9.jar");
+                    release.setVersion("b9");
+                    UpdateCheckerClient.getINSTANCE().downloadUpdate(release);
+                }
             }
+            else
+            {
+                Data.setStatus("Got all " + releases.size() + " releases!");
 
-            Data.setStatus("Got all " + releases.size() + " releases!");
-
-            Data.setStatus("Checking if we're up to date");
-            // Launch Checker
-            UpdateCheckerClient.getINSTANCE().downloadUpdate(getMostRecentRelease(releases));
+                Data.setStatus("Checking if we're up to date");
+                // Launch Checker
+                UpdateCheckerClient.getINSTANCE().downloadUpdate(getMostRecentRelease(releases));
+            }
 
             Data.setStatus("Up to date, launching program!");
             Data.setProgress(1.0);
@@ -195,6 +211,7 @@ public class LauncherUI_Controller implements Initializable
                 array[c] = releases.get(c);
             }
         }
+        System.out.println(array[0].toString());
         // Sort by Highest Number (latest release)
         quickSorter.sort(array);
         return array[0];

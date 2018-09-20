@@ -15,6 +15,9 @@ public class Release
     private String download_url = "";
     private int num = 0;
 
+    public Release()
+    {}
+
     /**
      * Release object.
      * @param jsonNode Input a jsonNode (gotten from Github API)
