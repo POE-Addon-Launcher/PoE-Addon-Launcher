@@ -2,6 +2,8 @@
 
 # PoE Addon Launcher (PAL)
 ![](https://i.imgur.com/0vOiONh.png "")
+
+
 Is a java based program, used for updating and managing several addons that are commonly used in Path of Exile.
 
 It's to be used to eliminate manual tracking of programs and their updates, and also launches all your addons prior to launching Path of Exile!
