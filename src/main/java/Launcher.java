@@ -1,5 +1,6 @@
 import GUI.Configurator;
 import GUI.Data;
+import GUI.Data2;
 import GUI.LauncherUI;
 
 /**
@@ -8,6 +9,24 @@ import GUI.LauncherUI;
 public class Launcher
 {
     public static void main(String[] args)
+    {
+        boolean succesful_read = Data2.getINSTANCE().readLauncherData();
+
+        if (succesful_read)
+        {
+            LauncherUI launcherUI = new LauncherUI();
+            launcherUI.ui_launch(args);
+        }
+        else
+        {
+            Data2.getINSTANCE().createPALfolder();
+            Configurator configurator = new Configurator();
+            configurator.ui_launch(args);
+        }
+    }
+
+    @Deprecated
+    public static void deprecated_main(String[] args)
     {
        // Read properties, will create an emptied properties file if none exist.
         Data.getINSTANCE().readProperties();

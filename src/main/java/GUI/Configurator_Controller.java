@@ -15,6 +15,7 @@ import java.util.Objects;
 /**
  * Controller for the Configurator.
  */
+@Deprecated
 public class Configurator_Controller
 {
     @FXML

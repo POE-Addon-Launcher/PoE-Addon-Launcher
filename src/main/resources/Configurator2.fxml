@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Configurator2Controller">
+   <children>
+      <AnchorPane fx:id="page3" prefHeight="200.0" prefWidth="300.0" visible="false">
+         <children>
+            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path of Exile Location(s)">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <ListView fx:id="PoEsList" layoutX="16.0" layoutY="45.0" prefHeight="141.0" prefWidth="200.0" />
+            <Button fx:id="addPoE" layoutX="242.0" layoutY="45.0" mnemonicParsing="false" onAction="#add" text="+" />
+            <Button fx:id="removePoE" layoutX="242.0" layoutY="81.0" mnemonicParsing="false" onAction="#remove" prefHeight="25.0" prefWidth="25.0" text="-" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="page1" prefHeight="200.0" prefWidth="300.0">
+         <children>
+            <Text layoutX="13.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAL Installer">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="13.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to PoE Addon Launcher (PAL) this installer will get you setup properly!" wrappingWidth="274.13671875" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="page2" prefHeight="200.0" prefWidth="300.0" visible="false">
+         <children>
+            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Installation Directory">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <RadioButton fx:id="rDefault" layoutX="12.0" layoutY="64.0" mnemonicParsing="false" selected="true" text="Install in default location (Appdata/Local)">
+               <toggleGroup>
+                  <ToggleGroup fx:id="one" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rCustom" layoutX="12.0" layoutY="91.0" mnemonicParsing="false" text="Install in custom directory" toggleGroup="$one" />
+            <Button fx:id="bBrowse" layoutX="12.0" layoutY="112.0" mnemonicParsing="false" onAction="#browseCustom" text="Browse" />
+            <Text fx:id="label_path_install" layoutX="75.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Directory has not been set!" textAlignment="CENTER" visible="false" wrappingWidth="213.13671875" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="page4" prefHeight="200.0" prefWidth="300.0" visible="false">
+         <children>
+            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thanks!">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="13.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't forget to check out the settings in the program for more options!" wrappingWidth="274.13671243190765">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="txtDump" layoutX="14.0" layoutY="73.0" prefHeight="89.0" prefWidth="268.0" text="This data will be saved:" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="bNext" defaultButton="true" layoutX="240.0" layoutY="165.0" mnemonicParsing="false" onAction="#nextPage" text="Next" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

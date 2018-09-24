@@ -9,6 +9,7 @@ import java.util.Properties;
  * *gasp* That's not proper coding!
  * Yes, but it is so much easier than doing it proper :).
  */
+@Deprecated
 public final class Data
 {
     private static final Data INSTANCE = new Data();
@@ -46,6 +47,7 @@ public final class Data
 
     public static void setStatus(String status)
     {
+        System.out.println(status);
         Data.status = status;
     }
 

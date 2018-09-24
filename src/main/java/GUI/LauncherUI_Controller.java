@@ -72,7 +72,7 @@ public class LauncherUI_Controller implements Initializable
     private File mr_jar;
     private void cleanUp()
     {
-        File f = new File(Data.getINSTANCE().getProgram_path());
+        File f = new File(Data2.getINSTANCE().getCoreFolder());
         if (f.exists())
         {
             if (f.isDirectory())
@@ -123,11 +123,10 @@ public class LauncherUI_Controller implements Initializable
                 if (Data.getProgress() == 1.0d)
                 {
                     // Launch and close current UI.
-
                     Runtime runtime = Runtime.getRuntime();
                     try
                     {
-                        runtime.exec("java -jar " + Data.getINSTANCE().getJar_filepath());
+                        runtime.exec("java -jar " + Data2.getINSTANCE().getJar_name_to_launch());
                     } catch (IOException e)
                     {
                         e.printStackTrace();
@@ -152,14 +151,14 @@ public class LauncherUI_Controller implements Initializable
         Runnable r = () ->
         {
             Data.setProgress(0.0);
-            Data.getINSTANCE().createProperties();
+            //Data.getINSTANCE().createProperties();
 
             // Create Releases Array
             Data.setStatus("Accessing github for releases");
             ArrayList<Release> releases = UpdateCheckerClient.getINSTANCE().getReleases();
             if (releases == null)
             {
-                File f = new File(Data.getINSTANCE().getProgram_path() + File.separator + "b9.jar");
+                File f = new File(Data2.getINSTANCE().getCoreFolder() + File.separator + "b10.jar");
                 if (f.exists())
                 {
                     Data.setStatus("Can't connect to the GitHub API using installed version.");
@@ -168,12 +167,13 @@ public class LauncherUI_Controller implements Initializable
                 }
                 else
                 {
+                    //TODO: Set b10
                     // If a user is out of github api requests hardcoded-download b9
                     Release release = new Release();
-                    release.setNum(9);
-                    release.setName("b9.jar");
-                    release.setDownload_url("https://github.com/POE-Addon-Launcher/Core/releases/download/b9/b9.jar");
-                    release.setVersion("b9");
+                    release.setNum(10);
+                    release.setName("b10.jar");
+                    release.setDownload_url("https://github.com/POE-Addon-Launcher/test_builds/releases/download/build10/b10.jar");
+                    release.setVersion("b10");
                     UpdateCheckerClient.getINSTANCE().downloadUpdate(release);
                 }
             }

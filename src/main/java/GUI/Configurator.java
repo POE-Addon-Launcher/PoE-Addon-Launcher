@@ -18,7 +18,7 @@ public class Configurator extends Application
     {
         primaryStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(getClass().getResource("/Path.fxml"));
+        Parent root = fxmlLoader.load(getClass().getResource("/Configurator2.fxml"));
         primaryStage.setTitle("PAL: Configurator");
         primaryStage.getIcons().add(new Image(getClass().getResource("/witch.png").toString()));
         primaryStage.setResizable(false);

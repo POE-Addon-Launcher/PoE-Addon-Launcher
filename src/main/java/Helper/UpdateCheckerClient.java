@@ -1,6 +1,7 @@
 package Helper;
 
 import GUI.Data;
+import GUI.Data2;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.kohsuke.github.GitHub;
@@ -40,17 +41,18 @@ public final class UpdateCheckerClient
      */
     public void downloadUpdate(Release most_recent)
     {
-        File versions_dir = new File(Data.getINSTANCE().getProgram_path());
+        File versions_dir = new File(Data2.getINSTANCE().getCoreFolder());
 
         if (versions_dir.isDirectory())
         {
             File[] directories = versions_dir.listFiles();
-            File mr_dir = new File(Data.getINSTANCE().getProgram_path());
+            File mr_dir = new File(Data2.getINSTANCE().getCoreFolder());
             for (File dir : directories)
             {
                 if (dir.getName().equals(most_recent.getName()))
                 {
-                    Data.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
+                    //Data.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
+                    Data2.getINSTANCE().setJar_name_to_launch(Data2.getINSTANCE().getCoreFolder() + File.separator + most_recent.getName());
                     Data.setStatus("Up to date, launching program!");
                     return;
                 }
@@ -61,7 +63,8 @@ public final class UpdateCheckerClient
                 InputStream in = URI.create(most_recent.getDownload_url()).toURL().openStream();
                 Files.copy(in, Paths.get(mr_dir.toString() + "/" + most_recent.getName()));
                 Data.setStatus("Downloaded: " + most_recent.getName());
-                Data.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
+                Data2.getINSTANCE().setJar_name_to_launch(Data2.getINSTANCE().getCoreFolder() + File.separator + most_recent.getName());
+                //Data.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
             }
             catch (MalformedURLException e)
             {
