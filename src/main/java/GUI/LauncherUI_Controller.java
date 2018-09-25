@@ -41,6 +41,8 @@ public class LauncherUI_Controller implements Initializable
 
     private void runMostRecentVersion()
     {
+        // Find out what the most recent version is.
+        cleanUp();
 
         Runtime runtime = Runtime.getRuntime();
         try
@@ -167,12 +169,10 @@ public class LauncherUI_Controller implements Initializable
                 }
                 else
                 {
-                    //TODO: Set b10
-                    // If a user is out of github api requests hardcoded-download b9
                     Release release = new Release();
                     release.setNum(10);
                     release.setName("b10.jar");
-                    release.setDownload_url("https://github.com/POE-Addon-Launcher/test_builds/releases/download/build10/b10.jar");
+                    release.setDownload_url("https://github.com/POE-Addon-Launcher/Core/releases/download/b10/b10.jar");
                     release.setVersion("b10");
                     UpdateCheckerClient.getINSTANCE().downloadUpdate(release);
                 }
