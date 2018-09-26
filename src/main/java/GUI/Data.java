@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 /**
- * Data Class.
+ * PAL Class.
  * *gasp* That's not proper coding!
  * Yes, but it is so much easier than doing it proper :).
  */

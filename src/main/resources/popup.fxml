@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="250.0" prefWidth="338.0" style="-fx-background-color: #3C3F41;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PopUp.PopUp_Controller">
+   <children>
+      <Text fx:id="bold_text" fill="WHITE" layoutX="11.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Out of Github API requests!" wrappingWidth="326.53125">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="topbar_image_closeWindow" fitHeight="25.0" fitWidth="33.0" layoutX="305.0" onMouseClicked="#topbar_closeWIndow_onMouseClicked" onMouseEntered="#topbar_closeWindow_onMouseEntered" onMouseExited="#topbar_closeWindow_onMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@cancel0.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="topbar_text" fill="WHITE" layoutX="13.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAL: Launcher" wrappingWidth="180.53125" />
+      <ChoiceBox fx:id="comboFiles" layoutX="66.0" layoutY="70.0" prefHeight="25.0" prefWidth="261.0" />
+      <Text fx:id="topbar_text1" fill="WHITE" layoutX="11.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a build to launch:" wrappingWidth="310.99999618530273">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="topbar_text11" fill="WHITE" layoutX="14.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR:" wrappingWidth="149.999999452848">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="topbar_text111" fill="WHITE" layoutX="14.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter download link of latest release: " wrappingWidth="310.999999452848">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="bOpenBrowser" layoutX="234.0" layoutY="163.0" mnemonicParsing="false" onAction="#openBrowser" text="Open Browser" />
+      <TextField fx:id="fieldDL_Link" alignment="CENTER" layoutX="64.0" layoutY="127.0" prefHeight="25.0" prefWidth="261.0" text="https://github.com/POE-Addon-Launcher/Core/releases/download/" />
+      <Text fx:id="topbar_text1111" fill="WHITE" layoutX="15.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Use the &quot;Open Browser&quot; button to go to the releases page." wrappingWidth="212.999999452848">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="bContinue" defaultButton="true" layoutX="261.0" layoutY="211.0" mnemonicParsing="false" onAction="#continue_program" text="Continue" />
+      <RadioButton fx:id="rDL" layoutX="40.0" layoutY="131.0" mnemonicParsing="false">
+         <toggleGroup>
+            <ToggleGroup fx:id="tg" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rLocal" layoutX="40.0" layoutY="74.0" mnemonicParsing="false" selected="true" toggleGroup="$tg" />
+      <Text fx:id="topbar_text11111" fill="WHITE" layoutX="15.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Want to avoid this popup? Get a Github API key." visible="false" wrappingWidth="212.999999452848">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

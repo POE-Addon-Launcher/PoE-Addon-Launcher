@@ -39,6 +39,7 @@ public final class UpdateCheckerClient
      * Creates a folder aswell.
      * @param most_recent The most recent release that has to be downloaded.
      */
+    @Deprecated
     public void downloadUpdate(Release most_recent)
     {
         File versions_dir = new File(Data2.getINSTANCE().getCoreFolder());
@@ -51,7 +52,7 @@ public final class UpdateCheckerClient
             {
                 if (dir.getName().equals(most_recent.getName()))
                 {
-                    //Data.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
+                    //PAL.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
                     Data2.getINSTANCE().setJar_name_to_launch(Data2.getINSTANCE().getCoreFolder() + File.separator + most_recent.getName());
                     Data.setStatus("Up to date, launching program!");
                     return;
@@ -64,7 +65,7 @@ public final class UpdateCheckerClient
                 Files.copy(in, Paths.get(mr_dir.toString() + "/" + most_recent.getName()));
                 Data.setStatus("Downloaded: " + most_recent.getName());
                 Data2.getINSTANCE().setJar_name_to_launch(Data2.getINSTANCE().getCoreFolder() + File.separator + most_recent.getName());
-                //Data.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
+                //PAL.getINSTANCE().setJar_filepath(mr_dir.toString() + "\\" + most_recent.getName());
             }
             catch (MalformedURLException e)
             {
@@ -79,9 +80,61 @@ public final class UpdateCheckerClient
     }
 
     /**
+     * Downloads an update from the github servers and puts it in the Versions folder.
+     * Creates a folder aswell.
+     * @return returns a String to be executed.
+     */
+    public String downloadUpdate(String URL)
+    {
+        File core_dir = new File(Data2.getINSTANCE().getCoreFolder());
+        String[] parts = URL.split("/");
+        String jarname = parts[parts.length-1];
+
+        a:if (!jarname.matches("(b)(\\d){1,9999999}(.jar)"))
+        {
+            jarname = null;
+            // Attempt to get it through bruteforce.
+            for (String str : parts)
+            {
+                if (str.matches("(b)(\\d){1,9999999}(.jar)"))
+                {
+                    jarname = str;
+                    break;
+                }
+            }
+        }
+
+        File file = new File(core_dir.getPath() + File.separator + jarname);
+
+        if (file.exists())
+        {
+            return file.getPath();
+        }
+
+        if (jarname != null)
+        {
+            if (core_dir.isDirectory())
+            {
+                try
+                {
+                    InputStream in = URI.create(URL).toURL().openStream();
+                    Files.copy(in, file.toPath());
+                    return file.getPath();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return "NO_DOWNLOAD";
+    }
+
+    /**
      * Genereates an ArrayList of releases.
      * @return Returns an ArrayList of releases.
      */
+    @Deprecated
     public ArrayList<Release> getReleases()
     {
         if (!canCheckGithub())
@@ -115,6 +168,7 @@ public final class UpdateCheckerClient
         return releases;
     }
 
+    @Deprecated
     private boolean canCheckGithub()
     {
         try
