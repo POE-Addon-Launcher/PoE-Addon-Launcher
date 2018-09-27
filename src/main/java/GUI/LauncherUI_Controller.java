@@ -330,7 +330,7 @@ public class LauncherUI_Controller implements Initializable
         Runtime runtime = Runtime.getRuntime();
         try
         {
-            runtime.exec("java -jar " + file.getPath());
+            runtime.exec("java -jar " + "\"" + file.getPath() + "\"");
         } catch (IOException e)
         {
             e.printStackTrace();
