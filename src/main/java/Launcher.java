@@ -3,17 +3,20 @@ import GUI.Data;
 import GUI.Data2;
 import GUI.LauncherUI;
 
+import java.net.URISyntaxException;
+
 /**
  * Launches the UI.
  */
 public class Launcher
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws URISyntaxException
     {
         boolean succesful_read = Data2.getINSTANCE().readLauncherData();
 
         if (succesful_read)
         {
+            Data2.getINSTANCE().getData().setLauncher_location(Configurator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
             LauncherUI launcherUI = new LauncherUI();
             launcherUI.ui_launch(args);
         }

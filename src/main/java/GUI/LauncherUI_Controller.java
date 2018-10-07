@@ -273,15 +273,24 @@ public class LauncherUI_Controller implements Initializable
 
                     File f = new File(Data2.getINSTANCE().getCoreFolder());
 
-                    for (File f_ : f.listFiles())
+                    if (!f.exists())
                     {
-                        if (f_.getName().equals(current_most_recent))
+                        f.mkdir();
+                    }
+
+                    if (f.listFiles() != null)
+                    {
+                        for (File f_ : f.listFiles())
                         {
-                            Data.setStatus("You have " + current_most_recent + " which is the most recent build!");
-                            runSpecificVersion(f_);
-                            return;
+                            if (f_.getName().equals(current_most_recent))
+                            {
+                                Data.setStatus("You have " + current_most_recent + " which is the most recent build!");
+                                runSpecificVersion(f_);
+                                return;
+                            }
                         }
                     }
+
                     Data.setStatus("You are out of date! Downloading new version...");
                     String jar = UpdateCheckerClient.getINSTANCE().downloadUpdate(repository.getLatestRelease().getAssets().get(0).getBrowserDownloadUrl());
                     runSpecificVersion(new File(jar));
