@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="338.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LaunchController">
+   <children>
+      <ImageView fx:id="launchPALimageview" fitHeight="50.0" fitWidth="196.0" layoutX="4.0" layoutY="285.0" onMouseEntered="#show" onMouseExited="#hide" onMousePressed="#pressed" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@lp0.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="manualUpdateImageView" fitHeight="50.0" fitWidth="196.0" layoutX="203.0" layoutY="285.0" onMouseEntered="#show" onMouseExited="#hide" onMousePressed="#pressed" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@mu0.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="checkForUpdatesImageView" fitHeight="50.0" fitWidth="196.0" layoutX="401.0" layoutY="285.0" onMouseEntered="#show" onMouseExited="#hide" onMousePressed="#pressed" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@cu0.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="1.0" onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="32.0" prefWidth="600.0" style="-fx-background-color: #3c3f41;">
+         <children>
+            <Text fill="WHITE" layoutX="250.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAL Updater">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="imgviewsettings" fitHeight="32.0" fitWidth="50.0" layoutX="-1.0" onMouseEntered="#show" onMouseExited="#hide" onMousePressed="#pressed" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@settings.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgviewExit" fitHeight="32.0" fitWidth="50.0" layoutX="550.0" onMouseEntered="#show" onMouseExited="#hide" onMousePressed="#pressed" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@cancel0.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgViewminimize" fitHeight="32.0" fitWidth="50.0" layoutX="500.0" onMouseEntered="#show" onMouseExited="#hide" onMousePressed="#pressed" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@minimize.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="2.0" layoutY="32.0" prefHeight="254.0" prefWidth="600.0">
+         <children>
+            <TabPane fx:id="settingsTabPane" prefHeight="254.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" visible="false">
+              <tabs>
+                <Tab text="Important Settings">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="11.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill out these settings otherwise the program won't work!">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="sInstallField" disable="true" layoutX="11.0" layoutY="54.0" prefHeight="25.0" prefWidth="505.0" />
+                              <Button layoutX="526.0" layoutY="53.0" mnemonicParsing="false" onAction="#changeInstallDir" prefHeight="25.0" prefWidth="60.0" text="Change" />
+                              <Text fill="WHITE" layoutX="13.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Install directory; defaults to appdata, highly reccomended to install it here, but change if you must." />
+                              <Text fill="WHITE" layoutX="13.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We also need to know where PoE is installed:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <ListView fx:id="poeList" layoutX="11.0" layoutY="105.0" prefHeight="112.0" prefWidth="463.0" />
+                              <Button fx:id="poePlus" layoutX="482.0" layoutY="127.0" mnemonicParsing="false" onAction="#addPoeFolder" text="+" />
+                              <Button fx:id="poeMinus" layoutX="482.0" layoutY="187.0" mnemonicParsing="false" onAction="#removePoeFolder" prefHeight="25.0" prefWidth="25.0" text="-" />
+                              <Button fx:id="isSave" layoutX="526.0" layoutY="186.0" mnemonicParsing="false" onAction="#saveMainSettings" prefHeight="25.0" prefWidth="60.0" text="Save" />
+                              <Button fx:id="sScanForMe" layoutX="482.0" layoutY="158.0" mnemonicParsing="false" onAction="#showLog" text="Automated Scan" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Launcher Settings">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="RED" layoutX="1.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ONLY CHANGE THIS IF YOU KNOW WHAT YOU ARE DOING / TOLD TO">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="lsInstallDir" layoutX="-1.0" layoutY="39.0" prefHeight="25.0" prefWidth="600.0" promptText="install_dir" />
+                              <TextField fx:id="lsLauncherLoc" layoutX="-1.0" layoutY="71.0" prefHeight="25.0" prefWidth="600.0" promptText="launcher_location" />
+                              <TextField fx:id="lsVersion" layoutX="-1.0" layoutY="101.0" prefHeight="25.0" prefWidth="600.0" promptText="version" />
+                              <Button fx:id="lsSave" layoutX="545.0" layoutY="186.0" mnemonicParsing="false" onAction="#lsSave" text="Save" />
+                              <Button fx:id="lsReset" layoutX="494.0" layoutY="186.0" mnemonicParsing="false" onAction="#lsReset" text="Reset" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="PAL Core Settings">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <CheckBox fx:id="pcWaitForUpdates" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Wait For Updates" />
+                              <CheckBox fx:id="pcGithubAPIEnabled" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" text="Github API Enabled" />
+                              <CheckBox fx:id="pcUseFilterblastAPI" layoutX="14.0" layoutY="62.0" mnemonicParsing="false" text="Use Filterblast API" />
+                              <CheckBox fx:id="pcDownOnLaunch" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" text="Download updates on launch" />
+                              <CheckBox fx:id="pcGithubApiTokenEnabled" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" text="Github API Token enabled" />
+                              <CheckBox fx:id="pcRunPoeOnLaunch" layoutX="14.0" layoutY="137.0" mnemonicParsing="false" text="Run PoE upon launching PAL" />
+                              <TextField fx:id="pcGithubToken" layoutX="342.0" layoutY="10.0" prefHeight="25.0" prefWidth="244.0" />
+                              <Text fill="WHITE" layoutX="191.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Github API Token:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="241.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AHK Folder:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="pcAHKFOlder" disable="true" layoutX="342.0" layoutY="35.0" prefHeight="25.0" prefWidth="244.0" />
+                              <Text fill="WHITE" layoutX="199.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prefered Version:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="pcPrefVersion" disable="true" layoutX="342.0" layoutY="60.0" prefHeight="25.0" prefWidth="244.0" />
+                              <Text fill="WHITE" layoutX="227.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loot filter dir:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="pcLootFilterDir" disable="true" layoutX="342.0" layoutY="85.0" prefHeight="25.0" prefWidth="244.0" />
+                              <Text fill="WHITE" layoutX="14.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Some of these settings can only be changed inside of PAL!">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="pcSave" layoutX="534.0" layoutY="176.0" mnemonicParsing="false" onAction="#savePALsettings" text="Save" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Browse PAL Versions">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="8.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Did the new version break PAL for you?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="8.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No worries revert to an older version here!">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <ListView fx:id="sListViewOlderVersions" layoutX="386.0" layoutY="13.0" prefHeight="200.0" prefWidth="200.0" />
+                              <Text fill="WHITE" layoutX="8.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click this button to search for all available versions:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="bSearchGithub" layoutX="8.0" layoutY="78.0" mnemonicParsing="false" onAction="#ghSearch" text="Search" />
+                              <Text fx:id="sButtonErrorText" fill="WHITE" layoutX="73.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You're out of Github API requests!" visible="false" wrappingWidth="290.13671875" />
+                              <Text fill="WHITE" layoutX="8.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Now select an older version to use -&gt;" wrappingWidth="369.13671875">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="sThisVersionWillBeUsed" fill="WHITE" layoutX="13.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B16 will now be used when you click &quot;Launch PAL&quot;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="bDownloadSelectedFromGithub" layoutX="8.0" layoutY="146.0" mnemonicParsing="false" onAction="#downloadSelectedFromGithub" text="Download" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="scanLog">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="sAddScanLocation" layoutX="14.0" layoutY="3.0" mnemonicParsing="false" onAction="#addscanlocation" text="Add scan location" />
+                              <Button fx:id="sScanAgain" layoutX="508.0" layoutY="2.0" mnemonicParsing="false" onAction="#AutoScan" text="Scan again" />
+                              <Text fx:id="scanActiveText" fill="WHITE" layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="568.0000145435333">
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="txtScanLocations" fill="WHITE" layoutX="16.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scanning: Defaults" wrappingWidth="568.0000145435333" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="mainButtonsScreen" layoutY="31.0" prefHeight="254.0" prefWidth="601.0" style="-fx-background-color: #2b2b2b;">
+         <children>
+            <TextField fx:id="bManUpdateField" layoutX="14.0" layoutY="215.0" onAction="#manUpdate" prefHeight="25.0" prefWidth="506.0" visible="false" />
+            <Button fx:id="bManUse" layoutX="529.0" layoutY="215.0" mnemonicParsing="false" onAction="#manUpdate" prefHeight="25.0" prefWidth="57.0" text="Use" visible="false" />
+            <ImageView fitHeight="254.0" fitWidth="600.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bgi_big.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="lpStatus" fill="WHITE" layoutX="12.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to PAL!" wrappingWidth="581.927734375">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+      <TextArea fx:id="txtDump" editable="false" layoutX="13.0" layoutY="39.0" prefHeight="241.0" prefWidth="568.0" text="Welcome to PAL Updater!" visible="false" />
+   </children>
+</AnchorPane>
