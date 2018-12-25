@@ -29,6 +29,11 @@ fun connect(): GitHub
     return GitHub.connectAnonymously()
 }
 
+fun connect(arg: String): GitHub
+{
+    return GitHub.connectUsingOAuth(arg)
+}
+
 fun checkReleases(github: GitHub): MutableList<GHRelease>?
 {
     val repo = github.getRepository(Constants.REPOSITORY)

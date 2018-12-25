@@ -24,6 +24,7 @@ import javafx.scene.control.CheckBox
 import javafx.scene.layout.AnchorPane
 import org.kohsuke.github.GHAsset
 import org.kohsuke.github.GHRelease
+import org.kohsuke.github.GitHub
 import java.net.URI
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -214,7 +215,18 @@ class LaunchController: Initializable
             }
 
             GlobalScope.launch {
-                val gh = connect()
+                lateinit var gh: GitHub
+
+                gh = if (pcGithubToken.text != "")
+                {
+                    connect(pcGithubToken.text)
+                }
+                else
+                {
+                    connect()
+                }
+
+
                 if (canQuerry(gh))
                 {
                     lpStatusAdd("\n\nConnect Succesful\nYou have ${gh.rateLimit.remaining} requests left which reset at:\n${gh.rateLimit.resetDate}")
