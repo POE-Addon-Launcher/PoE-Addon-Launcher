@@ -1,3 +1,6 @@
+# USE THIS VERSION INSTEAD IS MORE UP TO DATE: <https://github.com/POE-Addon-Launcher/PAL2>
+
+
 [![Build Status](https://travis-ci.org/POE-Addon-Launcher/PoE-Addon-Launcher.svg?branch=master)](https://travis-ci.org/POE-Addon-Launcher/PoE-Addon-Launcher)
 
 # PoE Addon Launcher (PAL)
